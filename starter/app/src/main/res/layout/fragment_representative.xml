@@ -9,7 +9,6 @@
             type="com.example.android.politicalpreparedness.ui.representative.RepresentativeViewModel" />
     </data>
 
-    <!-- Add motion scene to hide form on vertical scroll. -->
     <androidx.constraintlayout.motion.widget.MotionLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -55,7 +54,7 @@
                 android:id="@+id/etAddressLine2"
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="match_parent"
-                android:layout_height="0dp"
+                android:layout_height="@dimen/zero_dimen"
                 android:hint="@string/address_line_2"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/etAddressLine1">
@@ -74,8 +73,8 @@
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/etCity"
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                android:layout_width="180dp"
-                android:layout_height="0dp"
+                android:layout_width="@dimen/city_text_field_dimen"
+                android:layout_height="@dimen/zero_dimen"
                 android:hint="@string/city"
                 app:layout_constraintEnd_toStartOf="@id/spinnerStates"
                 app:layout_constraintStart_toStartOf="parent"
@@ -93,8 +92,8 @@
 
             <Spinner
                 android:id="@+id/spinnerStates"
-                android:layout_width="0dp"
-                android:layout_height="0dp"
+                android:layout_width="@dimen/zero_dimen"
+                android:layout_height="@dimen/zero_dimen"
                 android:autofillHints=""
                 android:entries="@array/states"
                 android:inputType="textPostalAddress"
@@ -108,7 +107,7 @@
                 android:id="@+id/etZip"
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="match_parent"
-                android:layout_height="0dp"
+                android:layout_height="@dimen/zero_dimen"
                 android:hint="@string/zip"
                 app:layout_constraintEnd_toEndOf="@id/etCity"
                 app:layout_constraintStart_toStartOf="parent"
@@ -141,7 +140,7 @@
                 style="@style/ButtonStyle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
+                android:layout_marginTop="@dimen/margin_medium"
                 android:clickable="true"
                 android:foreground="?attr/selectableItemBackgroundBorderless"
                 android:text="@string/use_my_location_button"
@@ -151,7 +150,7 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/representative_list_container"
             android:layout_width="match_parent"
-            android:layout_height="0dp"
+            android:layout_height="@dimen/zero_dimen"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -160,7 +159,7 @@
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/labelRepresentativeTitle"
                 style="@style/TextViewTitleStyle"
-                android:layout_width="0dp"
+                android:layout_width="@dimen/zero_dimen"
                 android:layout_height="wrap_content"
                 android:text="@string/my_representatives"
                 app:layout_constraintStart_toStartOf="parent"
@@ -179,9 +178,9 @@
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/rvRepresentations"
-                android:layout_width="0dp"
-                android:layout_height="0dp"
-                android:layout_marginTop="10dp"
+                android:layout_width="@dimen/zero_dimen"
+                android:layout_height="@dimen/zero_dimen"
+                android:layout_marginTop="@dimen/margin_medium"
                 app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"

@@ -24,7 +24,7 @@
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/tvUpcomingElectionHeader"
             style="@style/TextViewTitleStyle"
-            android:layout_width="0dp"
+            android:layout_width="@dimen/zero_dimen"
             android:layout_height="wrap_content"
             android:gravity="center"
             android:text="@string/upcoming_election_header"
@@ -35,8 +35,8 @@
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rvUpcomingElection"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
+            android:layout_width="@dimen/zero_dimen"
+            android:layout_height="@dimen/zero_dimen"
             android:layout_margin="@dimen/margin_small"
             android:visibility="visible"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
@@ -60,7 +60,7 @@
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/tvSavedElectionHeader"
             style="@style/TextViewTitleStyle"
-            android:layout_width="0dp"
+            android:layout_width="@dimen/zero_dimen"
             android:layout_height="wrap_content"
             android:gravity="center"
             android:text="@string/saved_election_header"
@@ -70,10 +70,9 @@
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rvSavedElection"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
+            android:layout_width="@dimen/zero_dimen"
+            android:layout_height="@dimen/zero_dimen"
             android:layout_marginTop="@dimen/margin_large"
-
             android:visibility="visible"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             app:layout_constraintBottom_toBottomOf="parent"
