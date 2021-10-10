@@ -5,24 +5,37 @@ apply plugin: 'kotlin-kapt'
 apply plugin: 'kotlinx-serialization'
 apply plugin: 'androidx.navigation.safeargs'
 
+
+def localProperties = new Properties()
+localProperties.load(new FileInputStream(rootProject.file("local.properties")))
+
 android {
-    compileSdkVersion 30
+    compileSdkVersion 31
     buildFeatures {
         dataBinding true
     }
     defaultConfig {
         applicationId 'com.example.android.politicalpreparedness'
         minSdkVersion 26
-        targetSdkVersion 30
+        targetSdkVersion 31
         versionCode 1
         versionName "1.0"
     }
     buildTypes {
+        debug {
+            buildConfigField("String", "API_KEY", "\"" + localProperties['apiKey'] + "\"")
+        }
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+
+    buildFeatures {
+        dataBinding true
+        viewBinding true
+    }
+
     androidExtensions {
         experimental = true
     }
@@ -47,8 +60,11 @@ dependencies {
     // Constraint Layout
     implementation "androidx.constraintlayout:constraintlayout:$version_constraint_layout"
 
-    // ViewModel and LiveData
-    implementation "androidx.lifecycle:lifecycle-extensions:$version_lifecycle_extensions"
+    // ViewModel
+    implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:$version_lifecycle_extensions"
+    // LiveData
+    implementation "androidx.lifecycle:lifecycle-livedata-ktx:$version_lifecycle_extensions"
+
 
     // Navigation
     implementation "androidx.navigation:navigation-fragment-ktx:$version_navigation"
@@ -68,12 +84,20 @@ dependencies {
     implementation "com.squareup.moshi:moshi-adapters:$version_moshi"
 
     // Glide
-    //TODO: Add Glide Implementation
+    implementation "com.github.bumptech.glide:glide:$version_glide"
+    annotationProcessor "com.github.bumptech.glide:compiler:$version_glide"
+
+    // Koin
+    implementation "org.koin:koin-android:2.2.1"
+    implementation 'org.koin:koin-androidx-viewmodel:2.2.1'
+    implementation 'org.koin:koin-androidx-scope:2.2.1'
+
 
     //Room
     implementation "androidx.room:room-runtime:$version_room"
     kapt "androidx.room:room-compiler:$version_room"
+    implementation "androidx.room:room-ktx:$version_room"
 
-    // Location
+    // Location`
     implementation "com.google.android.gms:play-services-location:$version_play_services_location"
 }

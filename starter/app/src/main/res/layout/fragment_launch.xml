@@ -3,16 +3,56 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
+    <data>
+
+        <variable
+            name="viewModel"
+            type="com.example.android.politicalpreparedness.ui.launch.LaunchViewModel" />
+    </data>
+
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context="com.example.android.politicalpreparedness.MainActivity">
+        android:padding="@dimen/default_padding"
+        tools:context="com.example.android.politicalpreparedness.screen.MainActivity">
 
-        <!-- TODO: Add image for home screen logo. -->
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/ivLogo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:contentDescription="@string/image_of_postal_logo"
+            app:layout_constraintBottom_toTopOf="@+id/btnUpcomingElections"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/ballot_logo" />
 
-        <!-- TODO: Add Button to navigate to upcoming elections. -->
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btnUpcomingElections"
+            style="@style/ButtonStyle"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/upcoming_button_margin_bottom"
+            android:clickable="true"
+            android:fontFamily="@font/roboto"
+            android:foreground="?attr/selectableItemBackgroundBorderless"
+            android:onClick="@{() -> viewModel.onUpcomingElectionsClicked()}"
+            android:text="@string/upcoming_elections_button"
+            app:layout_constraintBottom_toTopOf="@+id/btnFindRepresentations"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
 
-        <!-- TODO: Add Button to navigate to representatives. -->
-
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btnFindRepresentations"
+            style="@style/ButtonStyle"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:clickable="true"
+            android:foreground="?attr/selectableItemBackgroundBorderless"
+            android:onClick="@{() -> viewModel.onFindRepresentationsClicked()}"
+            android:text="@string/representative_button"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
