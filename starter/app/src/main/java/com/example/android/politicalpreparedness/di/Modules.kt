@@ -2,6 +2,7 @@ package com.example.android.politicalpreparedness.di
 
 
 import com.example.android.politicalpreparedness.data.Election
+import com.example.android.politicalpreparedness.data.ElectionDataSource
 import com.example.android.politicalpreparedness.data.ElectionRepository
 import com.example.android.politicalpreparedness.data.source.local.ElectionDatabase
 import com.example.android.politicalpreparedness.data.source.remote.CivicsApi
@@ -23,7 +24,7 @@ val apiModule = module {
 }
 
 val repositoryModule = module {
-    single { ElectionRepository(get(), get()) }
+    single { ElectionRepository(get(), get()) as ElectionDataSource }
 }
 
 val launchModule = module {
