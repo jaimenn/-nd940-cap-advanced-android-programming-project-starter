@@ -134,7 +134,7 @@
             android:id="@+id/rvRepresentations"
             android:layout_width="@dimen/zero_dimen"
             android:layout_height="@dimen/zero_dimen"
-            android:padding="@dimen/margin_medium"
+            android:padding="@dimen/margin_small"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
