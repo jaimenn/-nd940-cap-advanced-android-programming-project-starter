@@ -10,195 +10,162 @@
     </data>
 
     <androidx.constraintlayout.motion.widget.MotionLayout
+        android:id="@+id/main_layout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:padding="@dimen/default_padding"
         app:layoutDescription="@xml/fragment_representative_scene">
 
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/formRepresentativeSearch"
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/labelSearchTitle"
+            style="@style/TextViewTitleStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/search_title"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/etAddressLine1"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:hint="@string/address_line_1"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/labelSearchTitle">
 
-            <androidx.appcompat.widget.AppCompatTextView
-                android:id="@+id/labelSearchTitle"
-                style="@style/TextViewTitleStyle"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/search_title"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-
-
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/etAddressLine1"
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            <com.google.android.material.textfield.TextInputEditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="@string/address_line_1"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/labelSearchTitle">
-
-                <com.google.android.material.textfield.TextInputEditText
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:autofillHints=""
-                    android:inputType="textPostalAddress"
-                    android:text="@={viewModel.addressLine1}"
-                    app:layout_constraintStart_toStartOf="parent" />
-
-            </com.google.android.material.textfield.TextInputLayout>
-
-
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/etAddressLine2"
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/zero_dimen"
-                android:hint="@string/address_line_2"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/etAddressLine1">
-
-                <com.google.android.material.textfield.TextInputEditText
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:autofillHints=""
-                    android:inputType="textPostalAddress"
-                    android:text="@={viewModel.addressLine2}"
-                    app:layout_constraintStart_toStartOf="parent" />
-
-            </com.google.android.material.textfield.TextInputLayout>
-
-
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/etCity"
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                android:layout_width="@dimen/city_text_field_dimen"
-                android:layout_height="@dimen/zero_dimen"
-                android:hint="@string/city"
-                app:layout_constraintEnd_toStartOf="@id/spinnerStates"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/etAddressLine2">
-
-                <com.google.android.material.textfield.TextInputEditText
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:autofillHints=""
-                    android:inputType="textPostalAddress"
-                    android:text="@={viewModel.city}"
-                    app:layout_constraintStart_toStartOf="parent" />
-
-            </com.google.android.material.textfield.TextInputLayout>
-
-            <Spinner
-                android:id="@+id/spinnerStates"
-                android:layout_width="@dimen/zero_dimen"
-                android:layout_height="@dimen/zero_dimen"
                 android:autofillHints=""
-                android:entries="@array/states"
                 android:inputType="textPostalAddress"
-                app:layout_constraintBottom_toBottomOf="@id/etCity"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@id/etCity"
-                app:layout_constraintTop_toTopOf="@id/etCity"
-                app:stateValue="@{viewModel.state}" />
+                android:text="@={viewModel.addressLine1}"
+                app:layout_constraintStart_toStartOf="parent" />
 
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/etZip"
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/zero_dimen"
-                android:hint="@string/zip"
-                app:layout_constraintEnd_toEndOf="@id/etCity"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/etCity">
-
-                <com.google.android.material.textfield.TextInputEditText
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:autofillHints=""
-                    android:inputType="number"
-                    android:maxLength="5"
-                    android:text="@={viewModel.zip}"
-                    app:layout_constraintStart_toStartOf="parent" />
-
-            </com.google.android.material.textfield.TextInputLayout>
+        </com.google.android.material.textfield.TextInputLayout>
 
 
-            <androidx.appcompat.widget.AppCompatButton
-                android:id="@+id/btnSearchRepresentatives"
-                style="@style/ButtonStyle"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:clickable="true"
-                android:foreground="?attr/selectableItemBackgroundBorderless"
-                android:text="@string/find_my_representatives_button"
-                app:layout_constraintTop_toBottomOf="@id/etZip" />
-
-            <androidx.appcompat.widget.AppCompatButton
-                android:id="@+id/btnFindLocation"
-                style="@style/ButtonStyle"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/margin_medium"
-                android:clickable="true"
-                android:foreground="?attr/selectableItemBackgroundBorderless"
-                android:text="@string/use_my_location_button"
-                app:layout_constraintTop_toBottomOf="@id/btnSearchRepresentatives" />
-        </androidx.constraintlayout.widget.ConstraintLayout>
-
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/representative_list_container"
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/etAddressLine2"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="match_parent"
             android:layout_height="@dimen/zero_dimen"
+            android:hint="@string/address_line_2"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/etAddressLine1">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:autofillHints=""
+                android:inputType="textPostalAddress"
+                android:text="@={viewModel.addressLine2}"
+                app:layout_constraintStart_toStartOf="parent" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/etCity"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="@dimen/city_text_field_dimen"
+            android:layout_height="@dimen/zero_dimen"
+            android:hint="@string/city"
+            app:layout_constraintEnd_toStartOf="@id/spinnerStates"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/etAddressLine2">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:autofillHints=""
+                android:inputType="textPostalAddress"
+                android:text="@={viewModel.city}"
+                app:layout_constraintStart_toStartOf="parent" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <Spinner
+            android:id="@+id/spinnerStates"
+            android:layout_width="@dimen/zero_dimen"
+            android:layout_height="@dimen/zero_dimen"
+            android:autofillHints=""
+            android:entries="@array/states"
+            android:inputType="textPostalAddress"
+            app:layout_constraintBottom_toBottomOf="@id/etCity"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/etCity"
+            app:layout_constraintTop_toTopOf="@id/etCity"
+            app:stateValue="@{viewModel.state}" />
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/etZip"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/zero_dimen"
+            android:hint="@string/zip"
+            app:layout_constraintEnd_toEndOf="@id/etCity"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/etCity">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:autofillHints=""
+                android:inputType="number"
+                android:maxLength="5"
+                android:text="@={viewModel.zip}"
+                app:layout_constraintStart_toStartOf="parent" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btnSearchRepresentatives"
+            style="@style/ButtonStyle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:clickable="true"
+            android:foreground="?attr/selectableItemBackgroundBorderless"
+            android:text="@string/find_my_representatives_button"
+            app:layout_constraintTop_toBottomOf="@id/etZip" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btnFindLocation"
+            style="@style/ButtonStyle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_medium"
+            android:clickable="true"
+            android:foreground="?attr/selectableItemBackgroundBorderless"
+            android:text="@string/use_my_location_button"
+            app:layout_constraintTop_toBottomOf="@id/btnSearchRepresentatives" />
+
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/labelRepresentativeTitle"
+            style="@style/TextViewTitleStyle"
+            android:layout_width="@dimen/zero_dimen"
+            android:layout_height="wrap_content"
+            android:text="@string/my_representatives"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/btnFindLocation" />
+
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rvRepresentations"
+            android:layout_width="@dimen/zero_dimen"
+            android:layout_height="@dimen/zero_dimen"
+            android:layout_marginTop="@dimen/margin_medium"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/formRepresentativeSearch">
+            app:layout_constraintTop_toBottomOf="@id/labelRepresentativeTitle" />
 
-            <androidx.appcompat.widget.AppCompatTextView
-                android:id="@+id/labelRepresentativeTitle"
-                style="@style/TextViewTitleStyle"
-                android:layout_width="@dimen/zero_dimen"
-                android:layout_height="wrap_content"
-                android:text="@string/my_representatives"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-
-            <ProgressBar
-                android:id="@+id/pbLoading"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:gravity="center"
-                app:fadeVisible="@{viewModel.showLoading.booleanValue()}"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/rvRepresentations"
-                android:layout_width="@dimen/zero_dimen"
-                android:layout_height="@dimen/zero_dimen"
-                android:layout_marginTop="@dimen/margin_medium"
-                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/labelRepresentativeTitle" />
-
-            <androidx.appcompat.widget.AppCompatTextView
-                android:id="@+id/labelNoData"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center"
-                android:text="@string/search_result_no_data"
-                android:textAlignment="center"
-                app:fadeVisible="@{viewModel.representatives.empty}"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-
-        </androidx.constraintlayout.widget.ConstraintLayout>
 
     </androidx.constraintlayout.motion.widget.MotionLayout>
+
 </layout>

@@ -16,7 +16,6 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.AdapterView
 import androidx.databinding.DataBindingUtil
-import androidx.lifecycle.Observer
 import com.example.android.politicalpreparedness.BuildConfig
 import com.example.android.politicalpreparedness.R
 import com.example.android.politicalpreparedness.core.base.BaseFragment
@@ -40,6 +39,9 @@ class RepresentativeFragment : BaseFragment() {
 
     private lateinit var binding: FragmentRepresentativeBinding
     private lateinit var fusedLocationClient: FusedLocationProviderClient
+
+    private lateinit var snackbarToEnableLocation: Snackbar
+    private lateinit var snackbarToEnableLocationNavigateToSettings: Snackbar
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -80,7 +82,7 @@ class RepresentativeFragment : BaseFragment() {
 
         val representativeListAdapter = RepresentativeListAdapter()
         binding.rvRepresentations.adapter = representativeListAdapter
-        _viewModel.representatives.observe(viewLifecycleOwner, Observer { representatives ->
+        _viewModel.representatives.observe(viewLifecycleOwner, { representatives ->
             representativeListAdapter.submitList(representatives)
         })
 
@@ -103,17 +105,18 @@ class RepresentativeFragment : BaseFragment() {
                 enableLocationServiceAndGetUserLocation()
             }
             shouldShowRequestPermissionRationale(Manifest.permission.ACCESS_FINE_LOCATION) -> {
-                Snackbar.make(
+                snackbarToEnableLocationNavigateToSettings = Snackbar.make(
                     requireActivity().findViewById(android.R.id.content),
                     R.string.location_permission_required_rationale,
                     Snackbar.LENGTH_INDEFINITE
                 )
-                    .setAction(android.R.string.ok) {
-                        requestPermissions(
-                            arrayOf(Manifest.permission.ACCESS_FINE_LOCATION),
-                            REQUEST_LOCATION_PERMISSION
-                        )
-                    }.show()
+                snackbarToEnableLocationNavigateToSettings.setAction(android.R.string.ok) {
+                    requestPermissions(
+                        arrayOf(Manifest.permission.ACCESS_FINE_LOCATION),
+                        REQUEST_LOCATION_PERMISSION
+                    )
+                }
+                snackbarToEnableLocationNavigateToSettings.show()
             }
             else -> {
                 requestPermissions(
@@ -145,12 +148,13 @@ class RepresentativeFragment : BaseFragment() {
                     REQUEST_TURN_DEVICE_LOCATION_ON, null, 0, 0, 0, null
                 )
             } else {
-                Snackbar.make(
+                snackbarToEnableLocation = Snackbar.make(
                     requireActivity().findViewById(android.R.id.content),
                     R.string.location_services_denied_explanation, Snackbar.LENGTH_INDEFINITE
                 ).setAction(android.R.string.ok) {
                     enableLocationServiceAndGetUserLocation()
-                }.show()
+                }
+                snackbarToEnableLocation.show()
             }
         }
         locationSettingsResponseTask.addOnCompleteListener {
@@ -238,20 +242,34 @@ class RepresentativeFragment : BaseFragment() {
                     // Show messages to telling the user why your app actually requires the location permission.
                     // In case they previously chose "Deny & don't ask again",
                     // tell your users where to manually enable the location permission.
-                    Snackbar.make(
+
+                    snackbarToEnableLocationNavigateToSettings = Snackbar.make(
                         requireActivity().findViewById(android.R.id.content),
                         R.string.location_permission_denied_explanation,
                         Snackbar.LENGTH_INDEFINITE
                     )
-                        .setAction(R.string.settings) {
-                            startActivity(Intent().apply {
-                                action = Settings.ACTION_APPLICATION_DETAILS_SETTINGS
-                                data = Uri.fromParts("package", BuildConfig.APPLICATION_ID, null)
-                                flags = Intent.FLAG_ACTIVITY_NEW_TASK
-                            })
-                        }.show()
+                    snackbarToEnableLocationNavigateToSettings.setAction(R.string.settings) {
+                        startActivity(Intent().apply {
+                            action = Settings.ACTION_APPLICATION_DETAILS_SETTINGS
+                            data =
+                                Uri.fromParts("package", BuildConfig.APPLICATION_ID, null)
+                            flags = Intent.FLAG_ACTIVITY_NEW_TASK
+                        })
+                    }
+                    snackbarToEnableLocationNavigateToSettings.show()
+
                 }
             }
+        }
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        if (this::snackbarToEnableLocation.isInitialized && snackbarToEnableLocation.isShown) {
+            snackbarToEnableLocation.dismiss()
+        }
+        if (this::snackbarToEnableLocationNavigateToSettings.isInitialized && snackbarToEnableLocationNavigateToSettings.isShown) {
+            snackbarToEnableLocationNavigateToSettings.dismiss()
         }
     }
 
