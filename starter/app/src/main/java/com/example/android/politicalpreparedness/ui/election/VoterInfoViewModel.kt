@@ -13,7 +13,6 @@ import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
 
-
 class VoterInfoViewModel(
     private val repository: ElectionDataSource,
     val election: Election,

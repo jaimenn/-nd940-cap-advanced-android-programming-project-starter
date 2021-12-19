@@ -10,7 +10,6 @@ import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 
-
 class ElectionRepository(
     private val service: CivicsApiService,
     private val dao: ElectionDao,
@@ -60,6 +59,4 @@ class ElectionRepository(
                 Result.Error(ex.localizedMessage)
             }
         }
-
-
 }

@@ -35,8 +35,5 @@ abstract class ElectionDatabase : RoomDatabase() {
                 return instance
             }
         }
-
     }
-
-
 }

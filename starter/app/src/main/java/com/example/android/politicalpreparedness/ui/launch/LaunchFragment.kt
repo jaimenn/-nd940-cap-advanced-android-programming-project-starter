@@ -23,6 +23,4 @@ class LaunchFragment : BaseFragment() {
 
         return binding.root
     }
-
-
 }

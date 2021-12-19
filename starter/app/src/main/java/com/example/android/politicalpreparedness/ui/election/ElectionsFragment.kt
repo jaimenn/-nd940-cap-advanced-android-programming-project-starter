@@ -39,9 +39,11 @@ class ElectionsFragment : BaseFragment() {
     }
 
     private fun setupUI() {
-        val electionsAdapter = ElectionListAdapter(ElectionListAdapter.ClickListener {
-            _viewModel.onClickElectionItem(it)
-        })
+        val electionsAdapter = ElectionListAdapter(
+            ElectionListAdapter.ClickListener {
+                _viewModel.onClickElectionItem(it)
+            }
+        )
         binding.rvUpcomingElection.adapter = electionsAdapter
 
         lifecycleScope.launchWhenStarted {
@@ -49,9 +51,11 @@ class ElectionsFragment : BaseFragment() {
                 electionsAdapter.submitList(it)
             }
         }
-        val savedElectionsAdapter = ElectionListAdapter(ElectionListAdapter.ClickListener {
-            _viewModel.onClickElectionItem(it)
-        })
+        val savedElectionsAdapter = ElectionListAdapter(
+            ElectionListAdapter.ClickListener {
+                _viewModel.onClickElectionItem(it)
+            }
+        )
         binding.rvSavedElection.adapter = savedElectionsAdapter
         _viewModel.savedElections.observe(viewLifecycleOwner, { elections ->
             savedElectionsAdapter.submitList(elections)

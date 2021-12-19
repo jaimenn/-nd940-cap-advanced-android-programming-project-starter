@@ -14,6 +14,4 @@ abstract class BaseViewModel(app: Application) : AndroidViewModel(app) {
     val showLoading: SingleLiveEvent<Boolean> = SingleLiveEvent()
     val hideKeyboard: SingleLiveEvent<Boolean> = SingleLiveEvent()
     val openUrl: SingleLiveEvent<String> = SingleLiveEvent()
-
-
 }

@@ -38,7 +38,7 @@ class ElectionsViewModel(private val repository: ElectionDataSource, private val
                     _upcomingElections.emit(result.data.elections)
                 }
                 is Result.Error -> {
-                    //_upcomingElections.value = emptyList()
+                    // _upcomingElections.value = emptyList()
                     showToast.value = app.getString(R.string.error_upcoming_election)
                 }
             }

@@ -6,7 +6,6 @@ import com.example.android.politicalpreparedness.data.source.remote.models.Repre
 
 interface ElectionDataSource {
 
-
     suspend fun getUpcomingElections(): Result<ElectionResponse>
 
     fun getSavedElections(): LiveData<List<Election>>
@@ -20,5 +19,4 @@ interface ElectionDataSource {
     suspend fun getVoterInfo(address: String, electionId: Long): Result<VoterInfoDTO>
 
     suspend fun getRepresentatives(address: String): Result<RepresentativeResponse>
-
 }

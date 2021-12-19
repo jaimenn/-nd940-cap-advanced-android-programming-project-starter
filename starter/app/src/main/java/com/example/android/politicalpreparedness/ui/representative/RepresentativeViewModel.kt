@@ -24,7 +24,6 @@ class RepresentativeViewModel(private val repository: ElectionDataSource, val ap
     val representatives: LiveData<List<Representative>>
         get() = _representatives
 
-
     fun findMyRepresentatives() {
         hideKeyboard.value = true
         showLoading.value = true

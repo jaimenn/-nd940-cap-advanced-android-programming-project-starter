@@ -40,8 +40,8 @@ class RepresentativeFragment : BaseFragment() {
     private lateinit var binding: FragmentRepresentativeBinding
     private lateinit var fusedLocationClient: FusedLocationProviderClient
 
-    private lateinit var snackbarToEnableLocation: Snackbar
-    private lateinit var snackbarToEnableLocationNavigateToSettings: Snackbar
+    private lateinit var snackBarToEnableLocation: Snackbar
+    private lateinit var snackBarToEnableLocationNavigateToSettings: Snackbar
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -105,18 +105,18 @@ class RepresentativeFragment : BaseFragment() {
                 enableLocationServiceAndGetUserLocation()
             }
             shouldShowRequestPermissionRationale(Manifest.permission.ACCESS_FINE_LOCATION) -> {
-                snackbarToEnableLocationNavigateToSettings = Snackbar.make(
+                snackBarToEnableLocationNavigateToSettings = Snackbar.make(
                     requireActivity().findViewById(android.R.id.content),
                     R.string.location_permission_required_rationale,
                     Snackbar.LENGTH_INDEFINITE
                 )
-                snackbarToEnableLocationNavigateToSettings.setAction(android.R.string.ok) {
+                snackBarToEnableLocationNavigateToSettings.setAction(android.R.string.ok) {
                     requestPermissions(
                         arrayOf(Manifest.permission.ACCESS_FINE_LOCATION),
                         REQUEST_LOCATION_PERMISSION
                     )
                 }
-                snackbarToEnableLocationNavigateToSettings.show()
+                snackBarToEnableLocationNavigateToSettings.show()
             }
             else -> {
                 requestPermissions(
@@ -126,7 +126,6 @@ class RepresentativeFragment : BaseFragment() {
             }
         }
     }
-
 
     /*
   *  Uses the Location Client to check the current state of location settings, and gives the user
@@ -148,13 +147,13 @@ class RepresentativeFragment : BaseFragment() {
                     REQUEST_TURN_DEVICE_LOCATION_ON, null, 0, 0, 0, null
                 )
             } else {
-                snackbarToEnableLocation = Snackbar.make(
+                snackBarToEnableLocation = Snackbar.make(
                     requireActivity().findViewById(android.R.id.content),
                     R.string.location_services_denied_explanation, Snackbar.LENGTH_INDEFINITE
                 ).setAction(android.R.string.ok) {
                     enableLocationServiceAndGetUserLocation()
                 }
-                snackbarToEnableLocation.show()
+                snackBarToEnableLocation.show()
             }
         }
         locationSettingsResponseTask.addOnCompleteListener {
@@ -243,21 +242,22 @@ class RepresentativeFragment : BaseFragment() {
                     // In case they previously chose "Deny & don't ask again",
                     // tell your users where to manually enable the location permission.
 
-                    snackbarToEnableLocationNavigateToSettings = Snackbar.make(
+                    snackBarToEnableLocationNavigateToSettings = Snackbar.make(
                         requireActivity().findViewById(android.R.id.content),
                         R.string.location_permission_denied_explanation,
                         Snackbar.LENGTH_INDEFINITE
                     )
-                    snackbarToEnableLocationNavigateToSettings.setAction(R.string.settings) {
-                        startActivity(Intent().apply {
-                            action = Settings.ACTION_APPLICATION_DETAILS_SETTINGS
-                            data =
-                                Uri.fromParts("package", BuildConfig.APPLICATION_ID, null)
-                            flags = Intent.FLAG_ACTIVITY_NEW_TASK
-                        })
+                    snackBarToEnableLocationNavigateToSettings.setAction(R.string.settings) {
+                        startActivity(
+                            Intent().apply {
+                                action = Settings.ACTION_APPLICATION_DETAILS_SETTINGS
+                                data =
+                                    Uri.fromParts("package", BuildConfig.APPLICATION_ID, null)
+                                flags = Intent.FLAG_ACTIVITY_NEW_TASK
+                            }
+                        )
                     }
-                    snackbarToEnableLocationNavigateToSettings.show()
-
+                    snackBarToEnableLocationNavigateToSettings.show()
                 }
             }
         }
@@ -265,11 +265,11 @@ class RepresentativeFragment : BaseFragment() {
 
     override fun onDestroy() {
         super.onDestroy()
-        if (this::snackbarToEnableLocation.isInitialized && snackbarToEnableLocation.isShown) {
-            snackbarToEnableLocation.dismiss()
+        if (this::snackBarToEnableLocation.isInitialized && snackBarToEnableLocation.isShown) {
+            snackBarToEnableLocation.dismiss()
         }
-        if (this::snackbarToEnableLocationNavigateToSettings.isInitialized && snackbarToEnableLocationNavigateToSettings.isShown) {
-            snackbarToEnableLocationNavigateToSettings.dismiss()
+        if (this::snackBarToEnableLocationNavigateToSettings.isInitialized && snackBarToEnableLocationNavigateToSettings.isShown) {
+            snackBarToEnableLocationNavigateToSettings.dismiss()
         }
     }
 

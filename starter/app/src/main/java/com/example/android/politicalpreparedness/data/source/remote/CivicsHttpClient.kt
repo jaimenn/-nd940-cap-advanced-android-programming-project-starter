@@ -1,6 +1,5 @@
 package com.example.android.politicalpreparedness.data.source.remote
 
-
 import com.example.android.politicalpreparedness.BuildConfig
 import okhttp3.OkHttpClient
 
@@ -27,7 +26,5 @@ class CivicsHttpClient : OkHttpClient() {
                 }
                 .build()
         }
-
     }
-
 }

@@ -18,7 +18,6 @@ package com.example.android.politicalpreparedness.data
 
 import com.example.android.politicalpreparedness.data.Result.Success
 
-
 /**
  * A generic class that holds a value with its loading status.
  * @param <T>

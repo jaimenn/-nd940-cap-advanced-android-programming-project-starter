@@ -14,7 +14,7 @@ import com.example.android.politicalpreparedness.data.source.remote.models.Chann
 import com.example.android.politicalpreparedness.databinding.RepresentativeListItemBinding
 import com.example.android.politicalpreparedness.ui.representative.model.Representative
 
-class RepresentativeListAdapter: ListAdapter<Representative, RepresentativeViewHolder>(RepresentativeDiffCallback()){
+class RepresentativeListAdapter : ListAdapter<Representative, RepresentativeViewHolder>(RepresentativeDiffCallback()) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RepresentativeViewHolder {
         return RepresentativeViewHolder.from(parent)
@@ -87,7 +87,6 @@ class RepresentativeViewHolder(val binding: RepresentativeListItemBinding) :
         val intent = Intent(ACTION_VIEW, uri)
         itemView.context.startActivity(intent)
     }
-
 }
 
 class RepresentativeDiffCallback : DiffUtil.ItemCallback<Representative>() {

@@ -65,14 +65,13 @@ class VoterInfoFragment : BaseFragment() {
                 )
             }
         }
-
     }
 
     private fun setMessageWithClickableLink(textView: TextView, pattern: String, url: String) {
-        //Clickable Span will help us to make clickable a text
+        // Clickable Span will help us to make clickable a text
         val clickableSpan = object : ClickableSpan() {
             override fun onClick(textView: View) {
-                //To open the url in a browser
+                // To open the url in a browser
                 val intent = Intent(Intent.ACTION_VIEW)
                 intent.data = Uri.parse(url)
                 startActivity(intent)
@@ -82,18 +81,18 @@ class VoterInfoFragment : BaseFragment() {
         val endIndex = startIndex + url.length
 
         val content = pattern.replace("{url}", url)
-        //SpannableString will be created with the full content and
+        // SpannableString will be created with the full content and
         // the clickable content all together
         val spannableString = SpannableString(content)
-        //only the word 'link' is clickable
+        // only the word 'link' is clickable
         spannableString.setSpan(
             clickableSpan,
             startIndex,
             endIndex,
             Spanned.SPAN_EXCLUSIVE_EXCLUSIVE
         )
-        //The following is to set the new text in the TextView
-        //no styles for an already clicked link
+        // The following is to set the new text in the TextView
+        // no styles for an already clicked link
         textView.text = spannableString
         textView.movementMethod = LinkMovementMethod.getInstance()
         textView.highlightColor = Color.TRANSPARENT
